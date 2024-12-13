@@ -1,8 +1,11 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'App',
+};
+</script>
