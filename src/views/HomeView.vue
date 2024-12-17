@@ -1,14 +1,9 @@
 <template>
-  <div>
-    <h1>Home</h1>
-    <p>Welcome to the home page!</p>
-  </div>
+  <Layout>
+    <h1>Este es el contenido de la página principal</h1>
+  </Layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'HomeView',
-});
+<script setup lang="ts">
+import Layout from "@/components/Layout.vue";
 </script>

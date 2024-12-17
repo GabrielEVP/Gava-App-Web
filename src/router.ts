@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import LoginView from '@/views/LoginView.vue';
-import apiClient from '@/axios';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -22,14 +21,11 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach(async (to, from, next) => {
-    if (to.meta.requiresAuth) {
-        try {
-            await apiClient.get('/user');
-            next();
-        } catch (error) {
-            next('/');
-        }
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('access_token');
+
+    if (to.meta.requiresAuth && !token) {
+        next('/');
     } else {
         next();
     }
