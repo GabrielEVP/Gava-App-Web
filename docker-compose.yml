@@ -13,4 +13,4 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-    command: ["npm", "run", "dev", "--", "--host"]
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

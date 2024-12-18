@@ -1,9 +1,9 @@
 <template>
-  <Layout>
-    <h1>Este es el contenido de la página principal</h1>
-  </Layout>
+  <SideBar>
+    <h1>algo</h1>
+  </SideBar>
 </template>
 
 <script setup lang="ts">
-import Layout from "@/components/Layout.vue";
+import SideBar from "@/components/SideBar.vue";
 </script>
