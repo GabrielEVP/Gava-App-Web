@@ -3,16 +3,9 @@
     <!-- Navbar -->
     <header class="bg-white dark:bg-gray-800 shadow-sm h-16 fixed w-full top-0 z-20 transition-colors duration-300">
       <div class="flex items-center justify-between px-4 h-full">
-        <div class="flex items-center space-x-4">
-          <button @click="toggleSidebar"
-                  class="p-2 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-150">
-            <MenuIcon v-if="!isSidebarVisible" class="h-6 w-6 text-gray-600 dark:text-gray-300"/>
-            <XIcon v-else class="h-6 w-6 text-gray-600 dark:text-gray-300"/>
-          </button>
-          <h1 class="text-xl font-semibold text-gray-800 dark:text-white">
-            Gava App
-          </h1>
-        </div>
+        <h1 class="text-xl font-semibold text-gray-800 dark:text-white">
+          Gava App
+        </h1>
         <div class="flex items-center space-x-4">
           <button @click="toggleDarkMode" class="btn btn-ghost btn-circle">
             <SunIcon v-if="isDarkMode" class="h-5 w-5 text-gray-200"/>
@@ -40,8 +33,8 @@
     <aside
         class="fixed left-0 top-16 h-full w-52 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ease-in-out transform"
         :class="{
-        '-translate-x-full': !isSidebarVisible,
-        'translate-x-0': isSidebarVisible,
+        'w-16': !isSidebarVisible,
+        'w-52': isSidebarVisible
       }">
       <nav class="p-4">
         <ul class="space-y-2">
@@ -49,50 +42,56 @@
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-home h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Inicio</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Inicio</span>
             </a>
           </li>
           <li>
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-receipt h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Clientes</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Clientes</span>
             </a>
           </li>
           <li>
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-address-book h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Facturas</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Facturas</span>
             </a>
           </li>
           <li>
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-clipboard h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Presupuestos</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Presupuestos</span>
             </a>
           </li>
           <li>
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-file-check h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Gastos</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Gastos</span>
             </a>
           </li>
           <li>
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-briefcase h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Proveedores</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Proveedores</span>
             </a>
           </li>
           <li>
             <a href="#"
                class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
               <i class="pi pi-cart-minus h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="ml-3 text-gray-700 dark:text-gray-200">Productos</span>
+              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Productos</span>
             </a>
+          </li>
+          <li>
+            <button @click="toggleSidebar"
+                    class="p-2 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-150 absolute">
+              <i class="pi pi-equals h-5 w-5 text-gray-600 dark:text-gray-400"></i>
+            </button>
           </li>
         </ul>
       </nav>
