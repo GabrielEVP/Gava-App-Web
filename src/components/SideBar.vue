@@ -1,107 +1,67 @@
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-    <!-- Navbar -->
-    <header class="bg-white dark:bg-gray-800 shadow-sm h-16 fixed w-full top-0 z-20 transition-colors duration-300">
-      <div class="flex items-center justify-between px-4 h-full">
-        <h1 class="text-xl font-semibold text-gray-800 dark:text-white">
-          Gava App
-        </h1>
-        <div class="flex items-center space-x-4">
-          <button @click="toggleDarkMode" class="btn btn-ghost btn-circle">
-            <SunIcon v-if="isDarkMode" class="h-5 w-5 text-gray-200"/>
-            <MoonIcon v-else class="h-5 w-5 text-gray-600"/>
-          </button>
-
-          <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-              <div class="w-10 rounded-full">
-                <img src="https://placehold.co/100x100" alt="User avatar"/>
-              </div>
-            </label>
-            <ul tabindex="0"
-                class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-white dark:bg-gray-700 rounded-box w-52">
-              <li><a class="text-gray-700 dark:text-gray-200">Profile</a></li>
-              <li><a class="text-gray-700 dark:text-gray-200">Settings</a></li>
-              <li><a class="text-gray-700 dark:text-gray-200">Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </header>
-
     <!-- Sidebar -->
-    <aside
-        class="fixed left-0 top-16 h-full w-52 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ease-in-out transform"
-        :class="{
-        'w-16': !isSidebarVisible,
-        'w-52': isSidebarVisible
-      }">
-      <nav class="p-4">
-        <ul class="space-y-2">
+    <aside class="fixed left-0 h-full w-16 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ease-in-out transform flex flex-col justify-between">
+      <div class="p-2">
+        <img class="m-auto rounded-lg " src="../../public/Gava.jpg" alt="Icon"/>
+      </div>
+      <hr class="border-gray-300 dark:border-gray-700"/>
+      <nav class="p-2">
+        <ul class="space-y-3 flex flex-col items-center">
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-home h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Inicio</span>
-            </a>
+            <router-link to="/home" title="Inicio">
+              <i class="pi pi-home text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-receipt h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Clientes</span>
-            </a>
+            <router-link to="/client" title="Clientes">
+              <i class="pi pi-receipt text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-address-book h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Facturas</span>
-            </a>
+            <router-link to="/invoice" title="Facturas">
+              <i class="pi pi-address-book text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-clipboard h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Presupuestos</span>
-            </a>
+            <router-link to="/order" title="Presupuestos">
+              <i class="pi pi-clipboard text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-file-check h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Gastos</span>
-            </a>
+            <router-link to="/purchase" title="Gastos">
+              <i class="pi pi-file-check text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-briefcase h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Proveedores</span>
-            </a>
+            <router-link to="/supplier" title="Proveedores">
+              <i class="pi pi-briefcase text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
           <li>
-            <a href="#"
-               class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-              <i class="pi pi-cart-minus h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-              <span v-if="isSidebarVisible" class="ml-3 text-gray-700 dark:text-gray-200">Productos</span>
-            </a>
-          </li>
-          <li>
-            <button @click="toggleSidebar"
-                    class="p-2 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-150 absolute">
-              <i class="pi pi-equals h-5 w-5 text-gray-600 dark:text-gray-400"></i>
-            </button>
+            <router-link to="/product" title="Productos">
+              <i class="pi pi-cart-minus text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
+            </router-link>
           </li>
         </ul>
       </nav>
+      <div class="mt-auto">
+        <hr class="border-gray-300 dark:border-gray-700 my-1"/>
+        <div class="flex justify-center p-1">
+          <button @click="toggleDarkMode" class="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            <SunIcon v-if="isDarkMode" class="h-8 w-8 text-gray-200"/>
+            <MoonIcon v-else class="h-8 w-8 text-gray-600"/>
+          </button>
+        </div>
+        <hr class="border-gray-300 dark:border-gray-700 my-1"/>
+        <div class="pl-1 pt-2 pb-2">
+          <img class="rounded-full w-14 h-14" src="../../public/profile.jpeg" alt="User avatar"/>
+        </div>
+      </div>
     </aside>
 
     <!-- Main content -->
-    <main :class="{
-      'ml-6': !isSidebarVisible,
-      'ml-64': isSidebarVisible,
-    }" class="pt-16 transition-all duration-300">
+    <main class="ml-16 m-auto p-6">
       <slot></slot>
     </main>
   </div>
@@ -109,14 +69,10 @@
 
 <script setup lang="ts">
 import {ref, onMounted} from "vue";
-import {SunIcon, MoonIcon, LayoutDashboardIcon, ChartBarIcon, UsersIcon, MenuIcon, XIcon} from "lucide-vue-next";
+import {SunIcon, MoonIcon} from "lucide-vue-next";
 
-const isSidebarVisible = ref(false);
+const isSidebarVisible = ref(true);
 const isDarkMode = ref(false);
-
-const toggleSidebar = () => {
-  isSidebarVisible.value = !isSidebarVisible.value;
-};
 
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
