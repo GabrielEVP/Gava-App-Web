@@ -1,78 +1,186 @@
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
     <!-- Sidebar -->
-    <aside class="fixed left-0 h-full w-16 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ease-in-out transform flex flex-col justify-between">
-      <div class="p-2">
-        <img class="m-auto rounded-lg " src="../../public/Gava.jpg" alt="Icon"/>
+    <aside class="fixed left-0 h-full w-20 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ease-in-out">
+      <div class="p-3">
+        <img class="w-14 h-14 m-auto rounded-xl shadow-md" src="../../public/Gava.jpg" alt="Icon"/>
       </div>
-      <hr class="border-gray-300 dark:border-gray-700"/>
-      <nav class="p-2">
-        <ul class="space-y-3 flex flex-col items-center">
-          <li>
-            <router-link to="/home" title="Inicio">
-              <i class="pi pi-home text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/client" title="Clientes">
-              <i class="pi pi-receipt text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/invoice" title="Facturas">
-              <i class="pi pi-address-book text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/order" title="Presupuestos">
-              <i class="pi pi-clipboard text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/purchase" title="Gastos">
-              <i class="pi pi-file-check text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/supplier" title="Proveedores">
-              <i class="pi pi-briefcase text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/product" title="Productos">
-              <i class="pi pi-cart-minus text-gray-600 dark:text-gray-400 text-3xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"></i>
-            </router-link>
+
+      <hr class="border-gray-200 dark:border-gray-700 mx-3"/>
+
+      <nav class="py-4">
+        <ul class="space-y-4 flex flex-col items-center">
+          <li v-for="(item, index) in navigationItems" :key="index">
+            <div class="relative group">
+              <router-link :to="item.route">
+                <div class="p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 group">
+                  <component
+                      :is="item.icon"
+                      class="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-primary-500 dark:group-hover:text-primary-400"
+                  />
+                </div>
+              </router-link>
+
+              <!-- Tooltip -->
+              <div class="absolute left-full ml-2 px-3 py-1 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-md
+                         opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200
+                         whitespace-nowrap z-50">
+                {{ item.title }}
+                <!-- Tooltip arrow -->
+                <div class="absolute top-1/2 -left-1 -mt-1 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700">
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
       </nav>
-      <div class="mt-auto">
-        <hr class="border-gray-300 dark:border-gray-700 my-1"/>
-        <div class="flex justify-center p-1">
-          <button @click="toggleDarkMode" class="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-            <SunIcon v-if="isDarkMode" class="h-8 w-8 text-gray-200"/>
-            <MoonIcon v-else class="h-8 w-8 text-gray-600"/>
+
+      <div class="absolute bottom-0 w-full pb-4">
+        <hr class="border-gray-200 dark:border-gray-700 mx-3 mb-4"/>
+
+        <!-- Theme Toggle -->
+        <div class="flex justify-center mb-4">
+          <button
+              @click="toggleDarkMode"
+              class="p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
+          >
+            <SunIcon v-if="isDarkMode" class="w-6 h-6 text-gray-400"/>
+            <MoonIcon v-else class="w-6 h-6 text-gray-600"/>
           </button>
         </div>
-        <hr class="border-gray-300 dark:border-gray-700 my-1"/>
-        <div class="pl-1 pt-2 pb-2">
-          <img class="rounded-full w-14 h-14" src="../../public/profile.jpeg" alt="User avatar"/>
+
+        <hr class="border-gray-200 dark:border-gray-700 mx-3 mb-4"/>
+
+        <!-- Profile Section with Dropdown -->
+        <div class="relative px-3">
+          <button
+              @click="isProfileMenuOpen = !isProfileMenuOpen"
+              class="w-14 h-14 rounded-full ring-2 ring-primary-500 p-0.5 transition-transform hover:scale-105"
+          >
+            <img
+                class="w-full h-full rounded-full object-cover"
+                src="../../public/profile.jpeg"
+                alt="User avatar"
+            />
+          </button>
+
+          <!-- Profile Dropdown Menu -->
+          <div
+              v-if="isProfileMenuOpen"
+              v-click-outside="closeProfileMenu"
+              class="absolute left-full bottom-0 mb-0 ml-2 w-40 rounded-lg bg-white dark:bg-gray-800 shadow-lg py-1
+                   transform transition-all duration-200 z-50"
+          >
+            <div class="relative">
+              <!-- Arrow -->
+              <div class="absolute top-4 -left-2 border-8 border-transparent border-r-white dark:border-r-gray-800"></div>
+
+              <!-- Menu Items -->
+              <button
+                  v-for="(item, index) in profileMenuItems"
+                  :key="index"
+                  @click="item.action"
+                  class="w-full px-4 py-2.5 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700
+                       flex items-center gap-2 text-gray-700 dark:text-gray-300 transition-colors duration-150"
+              >
+                <component :is="item.icon" class="w-4 h-4"/>
+                {{ item.label }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </aside>
 
     <!-- Main content -->
-    <main class="ml-16 m-auto p-6">
+    <main class="ml-20 p-6">
       <slot></slot>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from "vue";
-import {SunIcon, MoonIcon} from "lucide-vue-next";
+import { ref, onMounted } from "vue";
+import {
+  SunIcon,
+  MoonIcon,
+  HomeIcon,
+  UsersIcon,
+  FileTextIcon,
+  ClipboardIcon,
+  WalletIcon,
+  BriefcaseIcon,
+  ShoppingCartIcon,
+  UserIcon,
+  LogOutIcon
+} from "lucide-vue-next";
 
-const isSidebarVisible = ref(true);
 const isDarkMode = ref(false);
+const isProfileMenuOpen = ref(false);
+
+// Navigation items configuration
+const navigationItems = [
+  { route: '/home', title: 'Inicio', icon: HomeIcon },
+  { route: '/client', title: 'Clientes', icon: UsersIcon },
+  { route: '/invoice', title: 'Facturas', icon: FileTextIcon },
+  { route: '/order', title: 'Presupuestos', icon: ClipboardIcon },
+  { route: '/purchase', title: 'Gastos', icon: WalletIcon },
+  { route: '/supplier', title: 'Proveedores', icon: BriefcaseIcon },
+  { route: '/product', title: 'Productos', icon: ShoppingCartIcon },
+];
+
+// Profile menu items configuration
+const profileMenuItems = [
+  {
+    label: 'Mi Perfil',
+    icon: UserIcon,
+    action: () => {
+      console.log('Profile clicked');
+      isProfileMenuOpen.value = false;
+    }
+  },
+  {
+    label: 'Cerrar Sesión',
+    icon: LogOutIcon,
+    action: () => {
+      console.log('Logout clicked');
+      isProfileMenuOpen.value = false;
+    }
+  },
+];
+
+// Close profile menu when clicking outside
+const closeProfileMenu = () => {
+  isProfileMenuOpen.value = false;
+};
+
+// Custom directive for handling clicks outside
+const vClickOutside = {
+  mounted(el: HTMLElement, binding: any) {
+    el._clickOutside = (event: Event) => {
+      if (!(el === event.target || el.contains(event.target as Node))) {
+        binding.value(event);
+      }
+    };
+    document.addEventListener('click', el._clickOutside);
+  },
+  unmounted(el: HTMLElement) {
+    document.removeEventListener('click', el._clickOutside);
+  }
+};
+
+onMounted(() => {
+  // Dark mode initialization
+  const storedMode = localStorage.getItem("darkMode");
+  if (storedMode === "true") {
+    isDarkMode.value = true;
+  } else if (storedMode === "false") {
+    isDarkMode.value = false;
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    isDarkMode.value = true;
+  }
+  updateDarkMode();
+});
 
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
@@ -88,16 +196,8 @@ const updateDarkMode = () => {
     localStorage.setItem("darkMode", "false");
   }
 };
-
-onMounted(() => {
-  const storedMode = localStorage.getItem("darkMode");
-  if (storedMode === "true") {
-    isDarkMode.value = true;
-  } else if (storedMode === "false") {
-    isDarkMode.value = false;
-  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    isDarkMode.value = true;
-  }
-  updateDarkMode();
-});
 </script>
+
+<style scoped>
+/* Add any additional custom styles here */
+</style>

@@ -6,11 +6,53 @@
           <!-- Static Content (Left Side) -->
           <div class="space-y-6">
             <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-              <h2 class="text-xl font-semibold text-gray-900 dark:text-white border-b pb-2 mb-4">Información del Cliente</h2>
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-white border-b pb-2 mb-4">Información del
+                Cliente</h2>
               <div class="space-y-4">
+                <div class="grid grid-cols-3 gap-2">
+                  <div>
+                    <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Codigo <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                        id="code"
+                        v-model="form.code"
+                        type="text"
+                        required
+                        class="px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el Codigo"
+                    />
+                  </div>
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Tipo de cliente <span class="text-red-500">*</span>
+                    </label>
+                    <select id="type_client" v-model="form.type_client" required
+                            class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    >
+                      <option value="1" selected>Natural</option>
+                      <option value="2">Juridico</option>
+                      <option value="3">Gobierno</option>
+                      <option value="4">Otros</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      R.I.F <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                        id="legal_name"
+                        v-model="form.legal_name"
+                        type="text"
+                        required
+                        class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe la Razon Social"
+                    />
+                  </div>
+                </div>
                 <div>
                   <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Razón Social <span class="text-red-500">*</span>
+                    Nombre Legal <span class="text-red-500">*</span>
                   </label>
                   <input
                       id="legal_name"
@@ -18,43 +60,7 @@
                       type="text"
                       required
                       class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                      placeholder="Escribe la Razon Social"
-                  />
-                </div>
-                <div>
-                  <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Nombre Comercial
-                  </label>
-                  <input
-                      id="name"
-                      v-model="form.name"
-                      type="text"
-                      class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                      placeholder="Escbribe el Nombre Comercial"
-                  />
-                </div>
-                <div>
-                  <label for="vat_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Tasa de impuesto
-                  </label>
-                  <input
-                      id="vat_number"
-                      v-model="form.vat_number"
-                      type="text"
-                      class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                      placeholder="Escribe la Tasa de Impuesto"
-                  />
-                </div>
-                <div>
-                  <label for="registration_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Número de Registro
-                  </label>
-                  <input
-                      id="registration_number"
-                      v-model="form.registration_number"
-                      type="text"
-                      class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                      placeholder="Escribe el Número de Registro"
+                      placeholder="Escribe el nombre legal"
                   />
                 </div>
                 <div>
@@ -73,6 +79,114 @@
                   </select>
                 </div>
                 <div>
+                  <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Direccion
+                  </label>
+                  <input
+                      id="legal_name"
+                      v-model="form.legal_name"
+                      type="text"
+                      required
+                      class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      placeholder="Escribe la direccion"
+                  />
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Estado
+                    </label>
+                    <input
+                        id="legal_name"
+                        v-model="form.legal_name"
+                        type="text"
+                        required
+                        class="px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el nombre legal"
+                    />
+                  </div>
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Ciudad
+                    </label>
+                    <input
+                        id="legal_name"
+                        v-model="form.legal_name"
+                        type="text"
+                        required
+                        class="px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el nombre legal"
+                    />
+                  </div>
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Municipio
+                    </label>
+                    <input
+                        id="legal_name"
+                        v-model="form.legal_name"
+                        type="text"
+                        required
+                        class="px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el nombre legal"
+                    />
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Días de credito
+                    </label>
+                    <input
+                        id="legal_name"
+                        v-model="form.legal_name"
+                        type="number"
+                        required
+                        class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el nombre legal"
+                    />
+                  </div>
+                  <div>
+                    <label for="legal_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Limite de credito
+                    </label>
+                    <input
+                        id="legal_name"
+                        v-model="form.legal_name"
+                        type="number"
+                        required
+                        class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el nombre legal"
+                    />
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="vat_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Tasa de impuesto por defecto
+                    </label>
+                    <input
+                        id="vat_number"
+                        v-model="form.vat_number"
+                        type="number"
+                        class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe la Tasa de Impuesto"
+                    />
+                  </div>
+                  <div>
+                    <label for="vat_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Descuento por defecto
+                    </label>
+                    <input
+                        id="vat_number"
+                        v-model="form.vat_number"
+                        type="number"
+                        class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white appearance-none"
+                        placeholder="Escribe la Tasa de Impuesto"
+                    />
+                  </div>
+                </div>
+                <div>
                   <label for="notes" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Notas
                   </label>
@@ -89,7 +203,7 @@
           </div>
 
           <!-- Dynamic Content (Right Side) -->
-          <div class="space-y-6 sm:mt-6 mt-0">
+          <div class="space-y-6">
             <!-- Dynamic Bank Accounts Container -->
             <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
               <div class="flex justify-between items-center mb-4">
@@ -99,7 +213,20 @@
                 </button>
               </div>
               <div v-for="(account, index) in form.bankAccounts" :key="index" class="mb-4 p-4 border border-gray-200 dark:border-gray-700 rounded-md">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label :for="'account_name_' + index" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Banco
+                    </label>
+                    <input
+                        :id="'account_name_' + index"
+                        v-model="account.name"
+                        type="text"
+                        class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="Escribe el Banco"
+                    />
+                  </div>
                   <div>
                     <label :for="'account_name_' + index" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Nombre de la Cuenta
@@ -114,14 +241,14 @@
                   </div>
                   <div>
                     <label :for="'account_number_' + index" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Número de Cuenta
+                      Tipo de cuenta
                     </label>
                     <input
                         :id="'account_number_' + index"
                         v-model="account.number"
                         type="text"
                         class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                        placeholder="Escribe el Número de Cuenta"
+                        placeholder="Escribe el tipo de cuenta"
                     />
                   </div>
                 </div>
@@ -213,51 +340,59 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 import SideBar from '@/components/SideBar.vue'
 
-const form = ref({
+const form = ref<ClientForm>({
+  code: '',
+  type_client: '1',
+  tax_id: '',
   legal_name: '',
-  name: '',
-  vat_number: '',
-  registration_number: '',
   country: '',
+  address: '',
+  state: '',
+  city: '',
+  municipality: '',
+  credit_days: 0,
+  credit_limit: 0,
+  default_tax_rate: 0,
+  default_discount: 0,
   notes: '',
-  bankAccounts: [{ name: '', number: '' }],
+  bankAccounts: [{ bank: '', account_name: '', account_type: '' }],
   emails: [{ address: '' }],
   phones: [{ number: '' }],
 })
 
 const countries = [
-  { code: 'AR', name: 'Argentina', flag: '🇦🇷' },
-  { code: 'BO', name: 'Bolivia', flag: '🇧🇴' },
-  { code: 'BR', name: 'Brazil', flag: '🇧🇷' },
-  { code: 'CA', name: 'Canada', flag: '🇨🇦' },
-  { code: 'CL', name: 'Chile', flag: '🇨🇱' },
-  { code: 'CO', name: 'Colombia', flag: '🇨🇴' },
-  { code: 'CR', name: 'Costa Rica', flag: '🇨🇷' },
-  { code: 'CU', name: 'Cuba', flag: '🇨🇺' },
-  { code: 'DO', name: 'Dominican Republic', flag: '🇩🇴' },
-  { code: 'EC', name: 'Ecuador', flag: '🇪🇨' },
-  { code: 'SV', name: 'El Salvador', flag: '🇸🇻' },
-  { code: 'ES', name: 'Spain', flag: '🇪🇸' },
-  { code: 'GT', name: 'Guatemala', flag: '🇬🇹' },
-  { code: 'HT', name: 'Haiti', flag: '🇭🇹' },
-  { code: 'HN', name: 'Honduras', flag: '🇭🇳' },
-  { code: 'JM', name: 'Jamaica', flag: '🇯🇲' },
-  { code: 'MX', name: 'Mexico', flag: '🇲🇽' },
-  { code: 'NI', name: 'Nicaragua', flag: '🇳🇮' },
-  { code: 'PA', name: 'Panama', flag: '🇵🇦' },
-  { code: 'PY', name: 'Paraguay', flag: '🇵🇾' },{ code: 'PY', name: 'Paraguay', flag: '🇵🇾' },
-  { code: 'PE', name: 'Peru', flag: '🇵🇪' },
-  { code: 'PR', name: 'Puerto Rico', flag: '🇵🇷' },
-  { code: 'UY', name: 'Uruguay', flag: '🇺🇾' },
-  { code: 'US', name: 'United States', flag: '🇺🇸' },
-  { code: 'VE', name: 'Venezuela', flag: '🇻🇪' },
+  {code: 'AR', name: 'Argentina', flag: '🇦🇷'},
+  {code: 'BO', name: 'Bolivia', flag: '🇧🇴'},
+  {code: 'BR', name: 'Brazil', flag: '🇧🇷'},
+  {code: 'CA', name: 'Canada', flag: '🇨🇦'},
+  {code: 'CL', name: 'Chile', flag: '🇨🇱'},
+  {code: 'CO', name: 'Colombia', flag: '🇨🇴'},
+  {code: 'CR', name: 'Costa Rica', flag: '🇨🇷'},
+  {code: 'CU', name: 'Cuba', flag: '🇨🇺'},
+  {code: 'DO', name: 'Dominican Republic', flag: '🇩🇴'},
+  {code: 'EC', name: 'Ecuador', flag: '🇪🇨'},
+  {code: 'SV', name: 'El Salvador', flag: '🇸🇻'},
+  {code: 'ES', name: 'Spain', flag: '🇪🇸'},
+  {code: 'GT', name: 'Guatemala', flag: '🇬🇹'},
+  {code: 'HT', name: 'Haiti', flag: '🇭🇹'},
+  {code: 'HN', name: 'Honduras', flag: '🇭🇳'},
+  {code: 'JM', name: 'Jamaica', flag: '🇯🇲'},
+  {code: 'MX', name: 'Mexico', flag: '🇲🇽'},
+  {code: 'NI', name: 'Nicaragua', flag: '🇳🇮'},
+  {code: 'PA', name: 'Panama', flag: '🇵🇦'},
+  {code: 'PY', name: 'Paraguay', flag: '🇵🇾'}, {code: 'PY', name: 'Paraguay', flag: '🇵🇾'},
+  {code: 'PE', name: 'Peru', flag: '🇵🇪'},
+  {code: 'PR', name: 'Puerto Rico', flag: '🇵🇷'},
+  {code: 'UY', name: 'Uruguay', flag: '🇺🇾'},
+  {code: 'US', name: 'United States', flag: '🇺🇸'},
+  {code: 'VE', name: 'Venezuela', flag: '🇻🇪'},
 ]
 
 const addBankAccount = () => {
-  form.value.bankAccounts.push({ name: '', number: '' })
+  form.value.bankAccounts.push({name: '', number: ''})
 }
 
 const removeBankAccount = (index: number) => {
@@ -265,7 +400,7 @@ const removeBankAccount = (index: number) => {
 }
 
 const addEmail = () => {
-  form.value.emails.push({ address: '' })
+  form.value.emails.push({address: ''})
 }
 
 const removeEmail = (index: number) => {
@@ -273,7 +408,7 @@ const removeEmail = (index: number) => {
 }
 
 const addPhone = () => {
-  form.value.phones.push({ number: '' })
+  form.value.phones.push({number: ''})
 }
 
 const removePhone = (index: number) => {
