@@ -4,15 +4,15 @@
       <div class="rounded-lg s p-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div class="mx-auto flex flex-wrap gap-4 items-center">
           <div class="flex-grow flex gap-2">
-            <FormSearch v-model="searchQuery" placeholder="Buscar Cliente" />
+            <FormSearch v-model="searchQuery" placeholder="Buscar Cliente"/>
             <div class="relative">
-              <FormFilter :selectFields="selectFields" />
+              <FormFilter :selectFields="selectFields"/>
             </div>
           </div>
-          <NewButton label="Nuevo Cliente" URL="/client/new" />
+          <NewButton label="Nuevo Cliente" URL="/clients/new"/>
         </div>
       </div>
-      <Table
+      <TableView
           :headers="tableHeaders"
           :rows="tableRows"
           :currentPage="currentPage"
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue'
 import SideBar from '@/components/SideBar.vue'
-import Table from '@/components/Table.vue'
+import TableView from '@/components/Table.vue'
 import NewButton from '@/components/buttons/NewButton.vue'
 import FormFilter from '@/components/forms/FormFilter.vue'
 import FormSearch from '@/components/forms/FormSearch.vue'
@@ -59,6 +59,8 @@ const updatePage = (page: number) => {
   currentPage.value = page
 }
 
+
+
 const tableHeaders = ['Nombre Legal', 'R.I.F', 'Tipo de Cliente']
 
 const clients = ref(Array.from({length: 50}, (_, i) => ({
@@ -72,9 +74,9 @@ const selectFields = [
   {
     label: 'Tipo de Cuenta',
     options: [
-      { value: '', text: 'Todos' },
-      { value: 'ahorro', text: 'Ahorro' },
-      { value: 'corriente', text: 'Corriente' }
+      {value: '', text: 'Todos'},
+      {value: 'ahorro', text: 'Ahorro'},
+      {value: 'corriente', text: 'Corriente'}
     ]
   }
 ]

@@ -7,7 +7,7 @@
           <div class="space-y-6">
             <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
               <h2 class="text-xl font-semibold text-gray-900 dark:text-white border-b pb-2 mb-4">
-                Información del Cliente
+                Editar Información del Cliente
               </h2>
               <div class="space-y-4">
                 <div class="grid grid-cols-2 gap-2">
@@ -138,6 +138,7 @@
                 <FormField
                     v-model="email.address"
                     :id="'email_' + index"
+                    label="Correo Electrónico"
                     type="email"
                     placeholder="Enter email address"
                     class="flex-grow"
@@ -161,6 +162,7 @@
                 <FormField
                     v-model="phone.number"
                     :id="'phone_' + index"
+                    label="Teléfono"
                     type="tel"
                     placeholder="Enter phone number"
                     class="flex-grow"
@@ -189,6 +191,7 @@
 </template>
 
 <script setup lang="ts">
+import {onMounted} from 'vue'
 import SideBar from '@/components/SideBar.vue'
 import FormField from '@/components/forms/FormField.vue'
 import FormDynamicList from '@/components/forms/FormDynamicList.vue'
@@ -199,31 +202,59 @@ import CancelButton from "@/components/buttons/CancelButton.vue";
 import AcceptButton from "@/components/buttons/AcceptButton.vue";
 
 import {CLIENT_TYPES} from '@/constants/Client'
-import {useClientForm} from '@/composables/useClientForm'
 import {COUNTRIES} from '@/constants/Countries'
+import { useClientForm } from '@/composables/useClientForm';
 import BackButton from "@/components/buttons/BackButton.vue";
+
+const client: Client = {
+  code: 'ABC123',
+  tax_id: 'TAX789XYZ',
+  legal_name: 'Empresa Ejemplo S.A. de C.V.',
+  type_client: 'NT',
+  country: 'VE',
+  address: 'Av. Ejemplo #123, Col. Centro',
+  state: 'Ciudad de México',
+  city: 'CDMX',
+  municipality: 'Cuauhtémoc',
+  credit_days: 30,
+  credit_limit: 100000,
+  default_tax_rate: 16,
+  default_discount: 0,
+  notes: 'Cliente preferente desde 2020',
+  bankAccounts: [
+    { bank: 'BBVA', account_name: 'Cuenta Ejemplo', account_type: 'Cheques' }
+  ],
+  emails: [
+    { address: 'contacto@ejemplo.com' }
+  ],
+  phones: [
+    { number: '+52 55 1234 5678', type: 'mobile' },
+    { number: '+52 55 1234 5678', type: 'mobile' }
+  ]
+};
 
 const {
   form,
   isValid,
+  setFormData,
+  resetForm,
   addBankAccount,
   removeBankAccount,
   addEmail,
   removeEmail,
   addPhone,
-  removePhone,
-  resetForm
-} = useClientForm()
+  removePhone
+} = useClientForm();
 
-const handleSubmit = async () => {
-  try {
-    console.log('Form submitted:', form.value)
-  } catch (error) {
-    console.error('Error submitting form:', error)
-  }
-}
+onMounted(() => {
+  setFormData(client);
+});
+
+const handleSubmit = () => {
+  console.log('Formulario enviado:', form.value);
+};
 
 const handleCancel = () => {
-  resetForm()
-}
+  resetForm();
+};
 </script>
