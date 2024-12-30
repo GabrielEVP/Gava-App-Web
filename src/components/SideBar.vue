@@ -1,13 +1,10 @@
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-    <!-- Sidebar -->
     <aside class="fixed left-0 h-full w-20 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ease-in-out">
       <div class="p-3">
         <img class="w-14 h-14 m-auto rounded-xl shadow-md" src="../../public/Gava.jpg" alt="Icon"/>
       </div>
-
       <hr class="border-gray-200 dark:border-gray-700 mx-3"/>
-
       <nav class="py-4">
         <ul class="space-y-4 flex flex-col items-center">
           <li v-for="(item, index) in navigationItems" :key="index">
@@ -20,25 +17,18 @@
                   />
                 </div>
               </router-link>
-
-              <!-- Tooltip -->
               <div class="absolute left-full ml-2 px-3 py-1 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-md
-                         opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200
-                         whitespace-nowrap z-50">
+            opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200
+            whitespace-nowrap z-1000">
                 {{ item.title }}
-                <!-- Tooltip arrow -->
-                <div class="absolute top-1/2 -left-1 -mt-1 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700">
-                </div>
+                <div class="absolute top-1/2 -left-1 -mt-1 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700"></div>
               </div>
             </div>
           </li>
         </ul>
       </nav>
-
       <div class="absolute bottom-0 w-full pb-4">
         <hr class="border-gray-200 dark:border-gray-700 mx-3 mb-4"/>
-
-        <!-- Theme Toggle -->
         <div class="flex justify-center mb-4">
           <button
               @click="toggleDarkMode"
@@ -48,10 +38,7 @@
             <MoonIcon v-else class="w-6 h-6 text-gray-600"/>
           </button>
         </div>
-
         <hr class="border-gray-200 dark:border-gray-700 mx-3 mb-4"/>
-
-        <!-- Profile Section with Dropdown -->
         <div class="relative px-3">
           <button
               @click="isProfileMenuOpen = !isProfileMenuOpen"
@@ -63,8 +50,6 @@
                 alt="User avatar"
             />
           </button>
-
-          <!-- Profile Dropdown Menu -->
           <div
               v-if="isProfileMenuOpen"
               v-click-outside="closeProfileMenu"
@@ -74,8 +59,6 @@
             <div class="relative">
               <!-- Arrow -->
               <div class="absolute top-4 -left-2 border-8 border-transparent border-r-white dark:border-r-gray-800"></div>
-
-              <!-- Menu Items -->
               <button
                   v-for="(item, index) in profileMenuItems"
                   :key="index"
@@ -91,8 +74,6 @@
         </div>
       </div>
     </aside>
-
-    <!-- Main content -->
     <main class="ml-20 p-6">
       <slot></slot>
     </main>
@@ -100,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import {ref, onMounted} from "vue";
 import {
   SunIcon,
   MoonIcon,
@@ -118,18 +99,16 @@ import {
 const isDarkMode = ref(false);
 const isProfileMenuOpen = ref(false);
 
-// Navigation items configuration
 const navigationItems = [
-  { route: '/home', title: 'Inicio', icon: HomeIcon },
-  { route: '/client', title: 'Clientes', icon: UsersIcon },
-  { route: '/invoice', title: 'Facturas', icon: FileTextIcon },
-  { route: '/order', title: 'Presupuestos', icon: ClipboardIcon },
-  { route: '/purchase', title: 'Gastos', icon: WalletIcon },
-  { route: '/supplier', title: 'Proveedores', icon: BriefcaseIcon },
-  { route: '/product', title: 'Productos', icon: ShoppingCartIcon },
+  {route: '/home', title: 'Inicio', icon: HomeIcon},
+  {route: '/clients', title: 'Clientes', icon: UsersIcon},
+  {route: '/invoice', title: 'Facturas', icon: FileTextIcon},
+  {route: '/order', title: 'Presupuestos', icon: ClipboardIcon},
+  {route: '/purchase', title: 'Gastos', icon: WalletIcon},
+  {route: '/supplier', title: 'Proveedores', icon: BriefcaseIcon},
+  {route: '/product', title: 'Productos', icon: ShoppingCartIcon},
 ];
 
-// Profile menu items configuration
 const profileMenuItems = [
   {
     label: 'Mi Perfil',
@@ -149,12 +128,10 @@ const profileMenuItems = [
   },
 ];
 
-// Close profile menu when clicking outside
 const closeProfileMenu = () => {
   isProfileMenuOpen.value = false;
 };
 
-// Custom directive for handling clicks outside
 const vClickOutside = {
   mounted(el: HTMLElement, binding: any) {
     el._clickOutside = (event: Event) => {
@@ -170,7 +147,6 @@ const vClickOutside = {
 };
 
 onMounted(() => {
-  // Dark mode initialization
   const storedMode = localStorage.getItem("darkMode");
   if (storedMode === "true") {
     isDarkMode.value = true;
@@ -197,7 +173,3 @@ const updateDarkMode = () => {
   }
 };
 </script>
-
-<style scoped>
-/* Add any additional custom styles here */
-</style>
