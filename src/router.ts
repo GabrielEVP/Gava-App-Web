@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import LoginView from '@/views/LoginView.vue';
-import ClientView from '@/views/Client/ClientView.vue';
-import ClientNewView from '@/views/Client/ClientNewView.vue';
-import ProductView from "@/views/ProductView.vue";
-import InvoiceView from "@/views/InvoiceView.vue";
-import OrderView from "@/views/OrderView.vue";
-import SupplierView from "@/views/SupplierView.vue";
-import PurchaseView from "@/views/PurchaseView.vue";
+import ClientsView from '@/views/client/ClientsView.vue';
+import ClientNewView from '@/views/client/ClientNewView.vue';
+import ProductView from "@/views/product/ProductView.vue";
+import InvoiceView from "@/views/invoice/InvoiceView.vue";
+import OrderView from "@/views/order/OrderView.vue";
+import SupplierView from "@/views/supplier/SupplierView.vue";
+import PurchaseView from "@/views/purchase/PurchaseView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/client',
         name: 'Client',
-        component: ClientView,
+        component: ClientsView,
         meta: { requiresAuth: true },
     },
     {
