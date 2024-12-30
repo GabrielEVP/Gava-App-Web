@@ -3,48 +3,57 @@
     <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 flex-1 flex flex-col">
       <div class="flex-1 overflow-auto">
         <table class="w-full">
-          <thead class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-            <tr>
-              <th
+          <thead class="top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+          <tr>
+            <th
                 v-for="(header, index) in headers"
                 :key="index"
                 class="text-left px-6 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300"
-              >
-                {{ header }}
-              </th>
-              <th class="text-center px-6 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300">Acciones</th>
-            </tr>
+            >
+              {{ header }}
+            </th>
+            <th class="text-center px-6 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300">Acciones</th>
+          </tr>
           </thead>
           <tbody>
-            <tr
+          <tr
               v-for="(row, rowIndex) in rows"
               :key="rowIndex"
               class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
-            >
-              <td
+          >
+            <td
                 v-for="(cell, cellIndex) in row"
                 :key="cellIndex"
                 class="px-6 py-2.5 text-xs text-gray-600 dark:text-gray-300"
-              >
-                {{ cell }}
-              </td>
-              <td class="px-6 py-2.5">
-                <div class="flex gap-1 justify-center">
-                  <button
+            >
+              {{ cell }}
+            </td>
+            <td class="px-6 py-2.5">
+              <div class="flex gap-1 justify-center">
+                <button
+                    class="p-1.5 text-black dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-colors"
+                    title="Ver"
+                    @click="navigateToClient(row[1])"
+                >
+                  <Eye class="h-4 w-4" />
+                </button>
+                <button
                     class="p-1.5 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-colors"
                     title="Editar"
-                  >
-                    <Pencil class="h-4 w-4" />
-                  </button>
-                  <button
+                    @click="navigateToClientEdit(row[1])"
+                >
+                  <Pencil class="h-4 w-4" />
+                </button>
+                <button
                     class="p-1.5 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
                     title="Eliminar"
-                  >
-                    <Trash2 class="h-4 w-4" />
-                  </button>
-                </div>
-              </td>
-            </tr>
+                    @click="openModal"
+                >
+                  <Trash2 class="h-4 w-4" />
+                </button>
+              </div>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -54,17 +63,17 @@
         </div>
         <div class="flex gap-2">
           <button
-            @click="emit('updatePage', currentPage - 1)"
-            :disabled="currentPage === 1"
-            class="px-3 h-8 text-xs font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:hover:bg-transparent transition-colors flex items-center gap-1.5"
+              @click="emit('updatePage', currentPage - 1)"
+              :disabled="currentPage === 1"
+              class="px-3 h-8 text-xs font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:hover:bg-transparent transition-colors flex items-center gap-1.5"
           >
             <ChevronLeft class="h-4 w-4" />
             Anterior
           </button>
           <button
-            @click="emit('updatePage', currentPage + 1)"
-            :disabled="currentPage >= totalPages"
-            class="px-3 h-8 text-xs font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:hover:bg-transparent transition-colors flex items-center gap-1.5"
+              @click="emit('updatePage', currentPage + 1)"
+              :disabled="currentPage >= totalPages"
+              class="px-3 h-8 text-xs font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:hover:bg-transparent transition-colors flex items-center gap-1.5"
           >
             Siguiente
             <ChevronRight class="h-4 w-4" />
@@ -73,13 +82,24 @@
       </div>
     </div>
   </div>
+  <ConfirmationModal
+      :isOpen="isModalOpen"
+      message="¿Estás seguro de que deseas eliminar este contacto?"
+      @confirm="handleDeleteConfirmation"
+      @cancel="closeModal"
+  />
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-import { Pencil, Trash2, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ref } from 'vue'
 
-const props = defineProps<{
+import { defineProps, defineEmits } from 'vue'
+import { useRouter } from 'vue-router'
+import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import ConfirmationModal from '@/components/modals/ModalConfirmation.vue'
+
+
+defineProps<{
   headers: string[],
   rows: string[][],
   currentPage: number,
@@ -90,4 +110,30 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['updatePage'])
+const router = useRouter()
+
+
+const isModalOpen = ref(false)
+
+const openModal = () => {
+  isModalOpen.value = true
+}
+
+const closeModal = () => {
+  isModalOpen.value = false
+}
+
+const handleDeleteConfirmation = () => {
+  // Aquí iría la lógica para borrar el contacto
+  console.log('Contacto borrado')
+  closeModal()
+}
+
+const navigateToClient = (id: string) => {
+  router.push(`/clients/${id}`)
+}
+
+const navigateToClientEdit = (id: string) => {
+  router.push(`/clients/edit/${id}`)
+}
 </script>
