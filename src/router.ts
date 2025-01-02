@@ -1,13 +1,12 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import LoginView from '@/views/LoginView.vue';
-import ProductView from "@/views/product/ProductView.vue";
-import InvoiceView from "@/views/invoice/InvoiceView.vue";
-import OrderView from "@/views/order/OrderView.vue";
-import PurchaseView from "@/views/purchase/PurchaseView.vue";
 import clientRoutes from '@/routes/ClientRouter';
 import supplierRouter from '@/routes/supplierRouter';
 import productRouter from "@/routes/ProductRouter";
+import orderRouter from "@/routes/OrderRouter";
+import purchaseRouter from "@/routes/PurchaseRouter";
+import invoiceRouter from "@/routes/InvoiceRouter";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -19,36 +18,15 @@ const routes: Array<RouteRecordRaw> = [
         path: '/home',
         name: 'Home',
         component: HomeView,
-        meta: { requiresAuth: true },
+        meta: {requiresAuth: true},
     },
+
     ...clientRoutes,
     ...supplierRouter,
     ...productRouter,
-
-    {
-        path: '/invoice',
-        name: 'Invoice',
-        component: InvoiceView,
-        meta: { requiresAuth: true },
-    },
-    {
-        path: '/order',
-        name: 'Order',
-        component: OrderView,
-        meta: { requiresAuth: true },
-    },
-    {
-        path: '/product',
-        name: 'Product',
-        component: ProductView,
-        meta: { requiresAuth: true },
-    },
-    {
-        path: '/purchase',
-        name: 'Purchase',
-        component: PurchaseView,
-        meta: { requiresAuth: true },
-    },
+    ...orderRouter,
+    ...purchaseRouter,
+    ...invoiceRouter,
 ];
 
 const router = createRouter({

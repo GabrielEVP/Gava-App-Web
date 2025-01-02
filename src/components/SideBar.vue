@@ -102,9 +102,9 @@ const isProfileMenuOpen = ref(false);
 const navigationItems = [
   {route: '/home', title: 'Inicio', icon: HomeIcon},
   {route: '/clients', title: 'Clientes', icon: UsersIcon},
-  {route: '/invoice', title: 'Facturas', icon: FileTextIcon},
-  {route: '/order', title: 'Presupuestos', icon: ClipboardIcon},
-  {route: '/purchase', title: 'Gastos', icon: WalletIcon},
+  {route: '/invoices', title: 'Facturas', icon: FileTextIcon},
+  {route: '/orders', title: 'Presupuestos', icon: ClipboardIcon},
+  {route: '/purchases', title: 'Gastos', icon: WalletIcon},
   {route: '/suppliers', title: 'Proveedores', icon: BriefcaseIcon},
   {route: '/products', title: 'Productos', icon: ShoppingCartIcon},
 ];

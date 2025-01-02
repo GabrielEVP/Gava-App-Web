@@ -19,7 +19,7 @@
             <tr
               v-for="(row, rowIndex) in rows"
               :key="rowIndex"
-              class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
+              class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-700/50 transition-colors"
             >
               <td
                 v-for="(cell, cellIndex) in row"
