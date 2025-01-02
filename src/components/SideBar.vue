@@ -106,7 +106,7 @@ const navigationItems = [
   {route: '/order', title: 'Presupuestos', icon: ClipboardIcon},
   {route: '/purchase', title: 'Gastos', icon: WalletIcon},
   {route: '/suppliers', title: 'Proveedores', icon: BriefcaseIcon},
-  {route: '/product', title: 'Productos', icon: ShoppingCartIcon},
+  {route: '/products', title: 'Productos', icon: ShoppingCartIcon},
 ];
 
 const profileMenuItems = [

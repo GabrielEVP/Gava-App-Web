@@ -7,7 +7,7 @@ import OrderView from "@/views/order/OrderView.vue";
 import PurchaseView from "@/views/purchase/PurchaseView.vue";
 import clientRoutes from '@/routes/ClientRouter';
 import supplierRouter from '@/routes/supplierRouter';
-
+import productRouter from "@/routes/ProductRouter";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -23,6 +23,8 @@ const routes: Array<RouteRecordRaw> = [
     },
     ...clientRoutes,
     ...supplierRouter,
+    ...productRouter,
+
     {
         path: '/invoice',
         name: 'Invoice',
