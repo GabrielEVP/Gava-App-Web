@@ -4,9 +4,10 @@ import LoginView from '@/views/LoginView.vue';
 import ProductView from "@/views/product/ProductView.vue";
 import InvoiceView from "@/views/invoice/InvoiceView.vue";
 import OrderView from "@/views/order/OrderView.vue";
-import SupplierView from "@/views/supplier/SupplierView.vue";
 import PurchaseView from "@/views/purchase/PurchaseView.vue";
-import clientRoutes from './routes/ClientRouter';
+import clientRoutes from '@/routes/ClientRouter';
+import supplierRouter from '@/routes/supplierRouter';
+
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -21,6 +22,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: { requiresAuth: true },
     },
     ...clientRoutes,
+    ...supplierRouter,
     {
         path: '/invoice',
         name: 'Invoice',
@@ -31,12 +33,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/order',
         name: 'Order',
         component: OrderView,
-        meta: { requiresAuth: true },
-    },
-    {
-        path: '/supplier',
-        name: 'Supplier',
-        component: SupplierView,
         meta: { requiresAuth: true },
     },
     {

@@ -19,7 +19,7 @@
               </router-link>
               <div class="absolute left-full ml-2 px-3 py-1 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-md
             opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200
-            whitespace-nowrap z-1000">
+            whitespace-nowrap z-100">
                 {{ item.title }}
                 <div class="absolute top-1/2 -left-1 -mt-1 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700"></div>
               </div>
@@ -105,7 +105,7 @@ const navigationItems = [
   {route: '/invoice', title: 'Facturas', icon: FileTextIcon},
   {route: '/order', title: 'Presupuestos', icon: ClipboardIcon},
   {route: '/purchase', title: 'Gastos', icon: WalletIcon},
-  {route: '/supplier', title: 'Proveedores', icon: BriefcaseIcon},
+  {route: '/suppliers', title: 'Proveedores', icon: BriefcaseIcon},
   {route: '/product', title: 'Productos', icon: ShoppingCartIcon},
 ];
 
